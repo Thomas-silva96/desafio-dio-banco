@@ -1,8 +1,12 @@
 package com.tsdroiddevelop.interfaces;
 
+import com.tsdroiddevelop.model.Cartao;
 import com.tsdroiddevelop.model.Conta;
 
 import java.text.ParseException;
+
+/*
+ * Interface com as funcionalidades do Banco */
 
 public interface FuncoesBancarias {
 
@@ -14,8 +18,9 @@ public interface FuncoesBancarias {
 
     void imprimirExtrato(Conta conta);
 
-    void solicitarCartao(Conta conta) throws ParseException;
+    Cartao solicitarCartao(Conta conta) throws ParseException;
 
     void exibirDadosBancarios(Conta conta);
 
+    void exibirDadosCartao(Conta conta);
 }

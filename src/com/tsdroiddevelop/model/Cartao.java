@@ -5,19 +5,50 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+/*
+ * Classe Cartao responsavel pela geração do cartoes de credito quando o cliente tiver um credito aprovado */
+
 public class Cartao {
 
-    private Integer numeroCartao;
+    private final String numeroCartao;
     private String validade;
-    private Integer codigoSeguranca;
+    private final Integer codigoSeguranca;
 
-    public Cartao() throws ParseException {
-        String data = LocalDateTime.now().plusYears(5).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public Cartao() {
+        String data = LocalDateTime.now().plusYears(5).format(DateTimeFormatter.ofPattern("MM/yyyy"));
         Random random = new Random();
 
-        this.numeroCartao = random.nextInt(16);
-        this.codigoSeguranca = random.nextInt(3);
+        this.numeroCartao = geraCartao();
+        this.codigoSeguranca = (random.nextInt(998) + 1);
         this.validade = data;
+    }
+
+    private static String geraCartao() {
+
+        String numeroGerado;
+        Random r = new Random();
+
+        //numeros gerados
+        int n1 = r.nextInt(10);
+        int n2 = r.nextInt(10);
+        int n3 = r.nextInt(10);
+        int n4 = r.nextInt(10);
+        int n5 = r.nextInt(10);
+        int n6 = r.nextInt(10);
+        int n7 = r.nextInt(10);
+        int n8 = r.nextInt(10);
+        int n9 = r.nextInt(10);
+        int n10 = r.nextInt(10);
+        int n11 = r.nextInt(10);
+        int n12 = r.nextInt(10);
+        int n13 = r.nextInt(10);
+        int n14 = r.nextInt(10);
+        int n15 = r.nextInt(10);
+        int n16 = r.nextInt(10);
+
+        numeroGerado = "" + n1 + n2 + n3 + n4 + " " + n5 + n6 + n7 + n8 + " " + n9 + n10 + n11 + n12 + " " + n13 + n14 + n15 + n16;
+
+        return numeroGerado;
     }
 
     public String getValidade() {
@@ -32,16 +63,8 @@ public class Cartao {
         return codigoSeguranca;
     }
 
-    public void setCodigoSeguranca(Integer codigoSeguranca) {
-        this.codigoSeguranca = codigoSeguranca;
-    }
-
-    public Integer getNumeroCartao() {
+    public String getNumeroCartao() {
         return numeroCartao;
-    }
-
-    public void setNumeroCartao(Integer numeroCartao) {
-        this.numeroCartao = numeroCartao;
     }
 
 }

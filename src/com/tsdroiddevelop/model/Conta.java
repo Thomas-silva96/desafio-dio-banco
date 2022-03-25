@@ -1,25 +1,40 @@
 package com.tsdroiddevelop.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Random;
+
+/*
+ * Classe conta responsavel pelo gerenciamento dos clientes, gerenciamento dos cartoes de credito e informações
+ * das contas - Saldo, tipo de conta ...*/
 
 public class Conta extends InfoBanco {
 
     private Cliente pessoa;
-    private String numero;
-    private String dataCriacao;
-    private String tipoConta;
+    private final String numero;
+    private final String dataCriacaoConta;
+    private final String tipoConta;
     private Double saldo;
-    private boolean ativa;
-    private Cartao cartaoCredito;
     private boolean possuiCredito;
+    private Cartao cartaoCredito;
 
     public Conta(String conta) {
+        String data = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Random random = new Random();
+
+        if (Objects.equals(conta, "Conta Corrente")) {
+            CONTA_CORRENTE++;
+            this.numero = "" + CONTA_CORRENTE + " 99" + "-" + random.nextInt(10);
+        } else {
+            CONTA_POUPANCA++;
+            this.numero = "" + CONTA_POUPANCA + " 90" + "-" + random.nextInt(10);
+        }
+
         this.tipoConta = conta;
-        this.numero = "" + random.nextInt(4) + "-" + random.nextInt(1);
+        this.dataCriacaoConta = data;
         this.pessoa = new Cliente();
         this.saldo = 0.0;
-        this.ativa = Boolean.TRUE;
     }
 
     public Cliente getPessoa() {
@@ -34,26 +49,8 @@ public class Conta extends InfoBanco {
         return numero;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    @Override
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    @Override
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
     public String getTipoConta() {
         return tipoConta;
-    }
-
-    public void setTipoConta(String tipoConta) {
-        this.tipoConta = tipoConta;
     }
 
     public Double getSaldo() {
@@ -64,20 +61,16 @@ public class Conta extends InfoBanco {
         this.saldo = saldo;
     }
 
-    public boolean isAtiva() {
-        return ativa;
-    }
-
-    public void setAtiva(boolean ativa) {
-        this.ativa = ativa;
+    public void setCartaoCredito(Cartao cartaoCredito) {
+        this.cartaoCredito = cartaoCredito;
     }
 
     public Cartao getCartaoCredito() {
         return cartaoCredito;
     }
 
-    public void setCartaoCredito(Cartao cartaoCredito) {
-        this.cartaoCredito = cartaoCredito;
+    public String getDataCriacaoConta() {
+        return dataCriacaoConta;
     }
 
     public boolean isPossuiCredito() {

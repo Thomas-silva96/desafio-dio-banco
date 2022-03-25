@@ -1,5 +1,8 @@
 package com.tsdroiddevelop.model;
 
+/*
+ * Classe cliente responsavel por guardar todos os dados dos clientes que abrirem uma conta*/
+
 public class Cliente {
 
     private String nome;
@@ -7,7 +10,8 @@ public class Cliente {
     private String cpf;
     private String genero;
 
-    public Cliente() {}
+    public Cliente() {
+    }
 
     public String getNome() {
         return nome;
